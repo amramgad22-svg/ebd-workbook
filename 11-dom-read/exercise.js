@@ -19,10 +19,12 @@
  *
  * @returns {string}
  */
+
 export function pageHeading() {
-  // TODO: querySelector the h1, then read its textContent.
-  throw new Error("pageHeading is not written yet");
+  const heading = document.querySelector("h1");
+  return heading.textContent;
 }
+
 
 /**
  * How many product cards are on the page.
@@ -30,9 +32,10 @@ export function pageHeading() {
  *
  * @returns {number}
  */
+
 export function productCount() {
-  // TODO: querySelectorAll gives you all of them. It has a length.
-  throw new Error("productCount is not written yet");
+  const products = document.querySelectorAll(".card");
+  return products.length;
 }
 
 /**
@@ -43,10 +46,12 @@ export function productCount() {
  *
  * @returns {string[]}
  */
+
 export function productNames() {
-  // TODO: querySelectorAll, Array.from, then map. A NodeList has no .map.
-  throw new Error("productNames is not written yet");
+  const names = document.querySelectorAll(".card h3");
+  return Array.from(names).map(name => name.textContent);
 }
+
 
 /**
  * The price text shown on the card with that name.
@@ -56,27 +61,28 @@ export function productNames() {
  * @param {string} name
  * @returns {string|null}
  */
+
 export function priceOf(name) {
-  // TODO: find the card whose h3 matches, then read its .price.
-  // Remember to return null when nothing matches.
-  throw new Error("priceOf is not written yet");
+  const cards = document.querySelectorAll(".card");
+
+  const card = Array.from(cards).find(
+    card => card.querySelector("h3").textContent === name
+  );
+
+  if (!card) {
+    return null;
+  }
+
+  return card.querySelector(".price").textContent;
 }
 
-/**
- * Now you write the whole function.
- *
- * Write a function called `soldOutNames`.
- *
- *   Parameters: none.
- *   Returns:    an array of the names on the cards that have the class
- *               `sold-out`, in the order they appear on the page.
- *
- *   soldOutNames() -> ["Backpack", "Calculator"]
- *
- * You can do this with one selector, or by filtering on
- * `classList.contains("sold-out")`. Either is fine.
- *
- * Remember `export`.
- */
+export function soldOutNames() {
+  const cards = document.querySelectorAll(".card.sold-out");
+
+  return Array.from(cards).map(card =>
+    card.querySelector("h3").textContent
+  );
+}
+
 
 // TODO: write soldOutNames here.
